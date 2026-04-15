@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<div align="center">
+  <h1>🎬 FAL Studio: Cinematic AI Video Pipeline</h1>
+  <p><i>The Ultimate Node-Based Workspace for AI Filmmakers</i></p>
 
-## Getting Started
+  <p>
+    <a href="https://reactflow.dev/"><img src="https://img.shields.io/badge/React%20Flow-Node%20Editor-FF0072?style=for-the-badge&logo=react" alt="React Flow" /></a>
+    <a href="https://fal.ai/"><img src="https://img.shields.io/badge/fal.ai-AI%20Inference-000000?style=for-the-badge" alt="fal.ai" /></a>
+    <a href="https://nextjs.org/"><img src="https://img.shields.io/badge/Next.js-16.2-000000?style=for-the-badge&logo=next.js" alt="Next.js" /></a>
+  </p>
+</div>
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+**FAL Studio** is a Next-Generation AI Video generation workspace built for the era of professional AI filmmaking. Moving beyond simple text-to-video prompts, it combines the structural narrative power of **LTX Studio** with the infinite flexibility of a **ComfyUI-style Node Graph**.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+No more linear generators. Build your movie scene by scene, wire your frames together, lock your character DNA, and render complex multi-shot sequences in parallel.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🚀 Killer Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 🕸️ The "Free Graph" Architecture
+Say goodbye to rigid pipelines. Build your own generation logic on an infinite canvas using **React Flow**.
+- **`+ Story Node`**: Generate a multi-scene film plan (prompts, camera angles, timing) via OpenAI.
+- **`+ Image Node`**: Generate perfect base frames using high-end models like `Flux.1 Schnell` or `Midjourney`.
+- **`+ Video Node`**: Connect your ideal Image Node to a Video Node, set the camera movement, and run it through `Seedance 2.0`, `Kling 3.0`, or `Veo 3.1`.
 
-## Learn More
+### 🧬 Absolute "Character DNA" Lock
+Achieve 100% face and character consistency across your entire film. 
+Spawn a **Character DNA** node, upload your reference image directly to `fal.storage`, and drag connections to every Scene in your graph. Every connected node will respect the reference identity.
 
-To learn more about Next.js, take a look at the following resources:
+### 🎧 Native Audio Sync
+Video models that support audio (like Seedance 2.0) are automatically fed contextual audio cues generated dynamically by the LLM. You get perfectly synced Sound Effects (SFX) straight out of the box—no post-production required.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 🎬 Director's Timeline Player
+Your graph doesn't just generate fragmented files. Switch to timeline mode to seamlessly Auto-Play your entire node chain as a contiguous, cinematic short film. 
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🛠️ Installation & Setup
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. **Clone the repo**
+   ```bash
+   git clone https://github.com/Kiwunaka/falworkflowtest.git
+   cd falworkflowtest
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Configure Environment**
+   Create a `.env.local` file in the root directory and add your keys:
+   ```env
+   # Required for AI model execution
+   FAL_KEY="your_fal_ai_key_here"
+   
+   # Required for the Story Planner (Idea -> Scenes)
+   OPENAI_API_KEY="your_openai_key_here"
+   ```
+
+4. **Run the Studio**
+   ```bash
+   npm run dev
+   ```
+   Open `http://localhost:3000` and click on the **"Node Editor ⚡"** tab to start building!
+
+---
+
+## 🧠 How it Works Under the Hood
+
+- **State Management:** Fully reactive custom React Flow hooks. Nodes are autonomous; they pull data from upstream connected edges right before execution.
+- **Lazy Evaluation:** Video nodes won't run until their required Image nodes have successfully finished generating a `Start Frame`.
+- **Parallel Processing:** Hit "Generate" on 5 different video nodes simultaneously. The Fal client proxy handles asynchronous queueing, meaning you render whole sequences in the time it takes to render one clip.
+
+<div align="center">
+  <sub>Built for the future of synthetic media. Make movies, not clips.</sub>
+</div>
