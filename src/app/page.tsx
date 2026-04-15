@@ -1,66 +1,118 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import Link from "next/link";
 
-export default function Home() {
+const TOOLS = [
+  {
+    href: "/generate/image",
+    icon: "🖼️",
+    title: "Изображения",
+    description:
+      "Генерация из текста — Flux, Nano Banana Pro, Recraft и сотни других моделей на выбор.",
+  },
+  {
+    href: "/generate/video",
+    icon: "🎬",
+    title: "Видео",
+    description:
+      "Изображение → Видео или Текст → Видео. Kling, Seedance, Veo и другие.",
+  },
+  {
+    href: "/story",
+    icon: "✦",
+    title: "Story Director",
+    description:
+      "Напиши идею — AI разложит её на сцены, сгенерирует кадры и соберёт видео для каждой.",
+    featured: true,
+  },
+  {
+    href: "/models",
+    icon: "⊞",
+    title: "Каталог моделей",
+    description:
+      "Все доступные модели fal.ai — поиск, фильтры по категориям, просмотр параметров.",
+  },
+];
+
+const PIPELINE_STEPS = [
+  { num: "01", title: "Идея", text: "Опишите что хотите увидеть — на любом языке, в свободной форме" },
+  { num: "02", title: "Сценарий", text: "AI-режиссёр разложит идею на 3-8 сцен с промптами и настроением" },
+  { num: "03", title: "Кадры", text: "Для каждой сцены генерируются начальный и конечный кадры" },
+  { num: "04", title: "Видео", text: "Видео-модель создаёт плавный переход между кадрами (3-8с каждая сцена)" },
+];
+
+export default function HomePage() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="page-container">
+      {/* Hero */}
+      <section className="hero">
+        <h1 className="hero-title">
+          AI-студия <span className="gradient-text">генерации медиа</span>
+        </h1>
+        <p className="hero-description">
+          Единый интерфейс для сотен моделей fal.ai.
+          Создавайте изображения, видео, или целый видеосторибоард из текстовой идеи.
+        </p>
+        <div className="flex items-center justify-center gap-sm">
+          <Link href="/story" className="btn btn-primary btn-lg">
+            Story Director
+          </Link>
+          <Link href="/models" className="btn btn-secondary btn-lg">
+            Каталог моделей
+          </Link>
         </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* Tools Grid */}
+      <section className="mt-xl">
+        <div className="grid grid-4">
+          {TOOLS.map((tool) => (
+            <Link
+              key={tool.href}
+              href={tool.href}
+              className="card card-clickable"
+            >
+              <span className="card-icon">{tool.icon}</span>
+              <h3 className="card-title">
+                {tool.title}
+                {tool.featured && (
+                  <span className="tag tag-orange" style={{ marginLeft: 8, verticalAlign: "middle" }}>
+                    Главное
+                  </span>
+                )}
+              </h3>
+              <p className="card-description">{tool.description}</p>
+            </Link>
+          ))}
         </div>
-      </main>
+      </section>
+
+      {/* Pipeline */}
+      <section className="mt-xl">
+        <h2 className="font-semibold mb-lg" style={{ fontSize: "var(--fs-18)" }}>
+          Как работает Story Director
+        </h2>
+        <div className="grid grid-4">
+          {PIPELINE_STEPS.map((s) => (
+            <div key={s.num} className="card">
+              <div
+                className="font-bold"
+                style={{
+                  fontSize: "var(--fs-24)",
+                  color: "var(--accent)",
+                  opacity: 0.5,
+                  marginBottom: 8,
+                  fontVariantNumeric: "tabular-nums",
+                }}
+              >
+                {s.num}
+              </div>
+              <h4 className="font-semibold" style={{ marginBottom: 4 }}>
+                {s.title}
+              </h4>
+              <p className="card-description">{s.text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }
